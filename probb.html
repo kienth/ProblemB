@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul id="demo"></ul>
+
+	<script type="text/javascript">
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if(xhttp.readyState == 4 && xhttp.status == 200) {
+				var myarr = JSON.parse(xhttp.responseText);
+				myFunction (myarr);
+			}
+		}
+		xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+		xhttp.send();
+
+		function myFunction(arr) {
+			var out = "";
+			var i;
+			
+			for(i = 0; i<arr.length; i++){
+				out +=["<li>" + arr[i].userId + "</li>" +
+						"<li>" + arr[i].id + "</li>" +
+						"<li>" + arr[i].title + "</li>" +
+						"<li>" + arr[i].completed + "</li>"+"<br>"];		
+					}		
+
+		document.getElementById("demo").innerHTML = out;
+	}
+
+	
+	</script>
+
+</body>
+</html>
